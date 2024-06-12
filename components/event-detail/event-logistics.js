@@ -21,7 +21,7 @@ function EventLogistics(props) {
         <Image src={`/${image}`} alt={imageAlt} width={400} height={400} />
       </div>
       <ul className={classes.list}>
-        <LogisticsItem icon={DateIcon}>
+        <LogisticsItem icon={DateIcon}>3
           <time>{humanReadableDate}</time>
         </LogisticsItem>
         <LogisticsItem icon={AddressIcon}>
