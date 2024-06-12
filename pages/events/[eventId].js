@@ -1,19 +1,20 @@
 import Head from "next/head";
+
 import { getEventById, getFeaturedEvents } from "../../helpers/api-util";
 import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
+import ErrorAlert from "../../components/ui/error-alert";
+import Comments from "../../components/input/comments";
 
-function EventsDetailPage(props) {
+function EventDetailPage(props) {
   const event = props.selectedEvent;
 
   if (!event) {
     return (
-      <>
-        <div className="center">
-          <p>Loading...</p>
-        </div>
-      </>
+      <div className="center">
+        <p>Loading...</p>
+      </div>
     );
   }
 
@@ -33,6 +34,7 @@ function EventsDetailPage(props) {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} />
     </>
   );
 }
@@ -57,8 +59,8 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
-export default EventsDetailPage;
+export default EventDetailPage;
